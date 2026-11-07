@@ -8,120 +8,322 @@
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
-    background: #101318;
-    color: #e9edf5;
+  background: #101318;
+  color: #e9edf5;
 }
 
 header {
-    padding: 22px 8%;
-    background: #181e27;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #303947;
+  padding: 18px 7%;
+  background: #181e27;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #303947;
 }
 
 .logo {
-    font-size: 23px;
-    font-weight: bold;
-    color: #42a5ff;
+  font-size: 22px;
+  font-weight: bold;
+  color: #42a5ff;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
 }
 
 nav a {
-    color: #ddd;
-    text-decoration: none;
-    margin-left: 20px;
+  color: #ddd;
+  text-decoration: none;
 }
 
-nav a:hover {
-    color: #42a5ff;
+nav a:hover { color: #42a5ff; }
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .hero {
-    padding: 100px 8%;
-    background: linear-gradient(120deg, #101318, #172b43);
+  padding: 110px 8%;
+  background: linear-gradient(120deg,#101318,#172b43);
 }
 
 .hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
+  font-size: clamp(34px,5vw,55px);
+  margin-bottom: 20px;
 }
 
-.hero h1 span {
-    color: #42a5ff;
-}
+.hero h1 span { color: #42a5ff; }
 
 .hero p {
-    color: #b6c1d1;
-    font-size: 18px;
-    max-width: 550px;
-    line-height: 1.6;
+  color: #b6c1d1;
+  max-width: 550px;
+  line-height: 1.7;
+  font-size: 17px;
 }
 
 .button {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 13px 23px;
-    background: #2388df;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
+  display: inline-block;
+  margin-top: 25px;
+  padding: 13px 22px;
+  background: #2388df;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
 }
 
-section {
-    padding: 65px 8%;
-}
+section { padding: 65px 8%; }
 
 .section-title {
-    font-size: 29px;
-    margin-bottom: 30px;
-    color: #42a5ff;
+  font-size: 29px;
+  color: #42a5ff;
+  margin-bottom: 20px;
+}
+
+.section-description {
+  color: #aeb9c9;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.stat {
+  background: #1b222d;
+  padding: 20px;
+  border: 1px solid #303947;
+  border-radius: 8px;
+}
+
+.stat h2 { color: #42a5ff; }
+.stat p { color: #aeb9c9; margin-top: 5px; }
+
+.search {
+  width: 100%;
+  padding: 15px;
+  background: #1b222d;
+  border: 1px solid #303b4a;
+  color: white;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  padding: 10px 16px;
+  background: #1b222d;
+  border: 1px solid #303947;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filters button.active,
+.filters button:hover {
+  background: #2388df;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 20px;
 }
 
 .card {
-    background: #1b222d;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #303b4a;
+  background: #1b222d;
+  padding: 23px;
+  border: 1px solid #303b4a;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: .2s;
 }
 
-.card h3 {
-    margin-bottom: 12px;
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #42a5ff;
 }
+
+.card h3 { margin-bottom: 12px; }
 
 .card p {
-    color: #aeb9c9;
-    line-height: 1.6;
+  color: #aeb9c9;
+  line-height: 1.6;
+  flex: 1;
 }
 
-.code {
-    background: #080c12;
-    padding: 20px;
-    border-radius: 8px;
-    overflow-x: auto;
-    color: #70d6a0;
-    margin-top: 15px;
-    text-align: left;
+.tag {
+  color: #42a5ff;
+  font-size: 12px;
+  margin: 15px 0;
+}
+
+.card button {
+  background: #2388df;
+  color: white;
+  border: 0;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card button:hover { background: #126bb8; }
+
+.no-results {
+  color: #aeb9c9;
+  padding: 30px 0;
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000c;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.modal-content {
+  background: #181e27;
+  border: 1px solid #303947;
+  border-radius: 12px;
+  padding: 22px;
+  width: 100%;
+  max-width: 750px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-top h2 { color: #42a5ff; }
+
+.close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-description {
+  color: #aeb9c9;
+  margin-top: 12px;
+}
+
+.codebox {
+  background: #080c12;
+  border: 1px solid #303947;
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.codebox pre {
+  color: #70d6a0;
+  font: 13px/1.6 monospace;
+  white-space: pre;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #2388df;
+  color: white;
+}
+
+#copyStatus {
+  color: #70d6a0;
+  margin-top: 12px;
+}
+
+.about {
+  color: #aeb9c9;
+  line-height: 1.8;
 }
 
 footer {
-    text-align: center;
-    padding: 30px;
+  text-align: center;
+  padding: 30px;
+  background: #181e27;
+  color: #8c99aa;
+}
+
+@media(max-width:650px) {
+  header { padding: 16px 5%; }
+  .logo { font-size: 18px; }
+  .menu-btn { display: block; }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
     background: #181e27;
-    color: #8c99aa;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  nav.active { display: flex; }
+
+  nav a {
+    padding: 17px 6%;
+    border-top: 1px solid #303947;
+  }
+
+  .hero { padding: 75px 7%; }
+  section { padding: 45px 6%; }
+  .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -129,53 +331,115 @@ footer {
 <body>
 
 <header>
-    <div class="logo">BURGER NETWORK</div>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#technology">Technology</a>
-        <a href="#about">About</a>
-    </nav>
+  <div class="logo">BURGER NETWORK</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <nav id="navigation">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+  </nav>
 </header>
 
 <div class="hero" id="home">
-    <h1>BUILD. CODE. <span>CREATE.</span></h1>
-    <p>
-        Welcome to Burger Network.
-        Exploring electronics, programming,
-        Arduino projects and creative technology.
-    </p>
-    <a href="#projects" class="button">Explore Projects</a>
+  <h1>BUILD. CODE. <span>CREATE.</span></h1>
+  <p>
+    Welcome to Burger Network.
+    Discover electronics, Arduino programming,
+    DIY projects and creative technology.
+  </p>
+  <a href="#projects" class="button">Explore Projects</a>
+
+  <div class="stats">
+    <div class="stat">
+      <h2>32+</h2>
+      <p>Arduino projects</p>
+    </div>
+    <div class="stat">
+      <h2>3</h2>
+      <p>Project levels</p>
+    </div>
+    <div class="stat">
+      <h2>100%</h2>
+      <p>Technology</p>
+    </div>
+  </div>
 </div>
 
 <section id="projects">
-    <h2 class="section-title">Our Projects</h2>
+  <h2 class="section-title">Project Library</h2>
+  <p class="section-description">
+    Explore our electronics projects and view their Arduino source code.
+  </p>
 
-    <div class="grid">
-        <div class="card">
-            <h3>Arduino LED System</h3>
-            <p>A simple Arduino project controlling LEDs.</p>
-        </div>
+  <input
+    class="search"
+    id="search"
+    placeholder="Search projects..."
+    oninput="renderProjects()"
+  >
 
-        <div class="card">
-            <h3>Mini Electric Car</h3>
-            <p>Small electronics project using motors, batteries and lights.</p>
-        </div>
+  <div class="filters">
+    <button class="active" onclick="setFilter('All',this)">All</button>
+    <button onclick="setFilter('Beginner',this)">Beginner</button>
+    <button onclick="setFilter('Intermediate',this)">Intermediate</button>
+    <button onclick="setFilter('Advanced',this)">Advanced</button>
+  </div>
 
-        <div class="card">
-            <h3>Smart Technology</h3>
-            <p>Experimenting with sensors and electronic components.</p>
-        </div>
-    </div>
+  <div class="grid" id="projectGrid"></div>
+  <p class="no-results" id="noResults">No projects found.</p>
 </section>
 
-<section id="technology">
-    <h2 class="section-title">Arduino Code Lab</h2>
-    <p>Example Arduino code from Burger Network.</p>
+<section id="about">
+  <h2 class="section-title">About Burger Network</h2>
+  <p class="about">
+    Burger Network is an independent technology project
+    focused on electronics, Arduino programming,
+    DIY engineering and experimenting with new ideas.
 
-    <div class="code">
-<pre>
-int led = 13;
+    <br><br>
+
+    Our goal is to explore technology and share
+    useful code and projects with everyone.
+  </p>
+</section>
+
+<div class="modal" id="modal" onclick="outsideClose(event)">
+  <div class="modal-content">
+
+    <div class="modal-top">
+      <h2 id="modalTitle"></h2>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <p class="modal-description" id="modalDescription"></p>
+
+    <div class="codebox">
+      <pre id="modalCode"></pre>
+    </div>
+
+    <div class="modal-actions">
+      <button onclick="copyCode()">Copy Arduino Code</button>
+      <button onclick="closeModal()">Close</button>
+    </div>
+
+    <p id="copyStatus"></p>
+  </div>
+</div>
+
+<footer>
+  © 2026 Burger Network | Technology & Electronics
+</footer>
+
+<script>
+
+const projects = [
+
+{
+name:"LED Blink",
+tag:"Beginner",
+description:"Make an LED blink every second using Arduino.",
+code:`int led = 13;
 
 void setup() {
   pinMode(led, OUTPUT);
@@ -184,27 +448,744 @@ void setup() {
 void loop() {
   digitalWrite(led, HIGH);
   delay(1000);
-
   digitalWrite(led, LOW);
   delay(1000);
+}`
+},
+
+{
+name:"Traffic Light",
+tag:"Beginner",
+description:"Create a traffic light using three LEDs.",
+code:`int red = 13;
+int yellow = 12;
+int green = 11;
+
+void setup() {
+  pinMode(red, OUTPUT);
+  pinMode(yellow, OUTPUT);
+  pinMode(green, OUTPUT);
 }
-</pre>
-    </div>
-</section>
 
-<section id="about">
-    <h2 class="section-title">About Burger Network</h2>
-    <p>
-        Burger Network is a small independent
-        technology project focused on electronics,
-        Arduino programming, DIY projects
-        and experimenting with new ideas.
-    </p>
-</section>
+void loop() {
+  digitalWrite(red, HIGH);
+  delay(3000);
+  digitalWrite(red, LOW);
 
-<footer>
-    © 2026 Burger Network | Technology & Electronics
-</footer>
+  digitalWrite(green, HIGH);
+  delay(3000);
+  digitalWrite(green, LOW);
 
-</body>
-</html>
+  digitalWrite(yellow, HIGH);
+  delay(1000);
+  digitalWrite(yellow, LOW);
+}`
+},
+
+{
+name:"Button LED",
+tag:"Beginner",
+description:"Control an LED using a push button.",
+code:`int led = 13;
+int button = 2;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(button, INPUT_PULLUP);
+}
+
+void loop() {
+  digitalWrite(led,
+    digitalRead(button) == LOW);
+}`
+},
+
+{
+name:"Buzzer Alarm",
+tag:"Beginner",
+description:"Make a buzzer produce an alarm sound.",
+code:`int buzzer = 8;
+
+void setup() {
+  pinMode(buzzer, OUTPUT);
+}
+
+void loop() {
+  tone(buzzer, 1000);
+  delay(500);
+  noTone(buzzer);
+  delay(500);
+}`
+},
+
+{
+name:"Ultrasonic Sensor",
+tag:"Intermediate",
+description:"Measure distance using an HC-SR04 sensor.",
+code:`int trig = 9;
+int echo = 10;
+
+void setup() {
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+
+  long duration = pulseIn(echo, HIGH);
+  float distance = duration * 0.0343 / 2;
+
+  Serial.println(distance);
+  delay(500);
+}`
+},
+
+{
+name:"Servo Motor",
+tag:"Intermediate",
+description:"Move a servo motor between positions.",
+code:`#include <Servo.h>
+
+Servo motor;
+
+void setup() {
+  motor.attach(9);
+}
+
+void loop() {
+  motor.write(0);
+  delay(1000);
+
+  motor.write(90);
+  delay(1000);
+
+  motor.write(180);
+  delay(1000);
+}`
+},
+
+{
+name:"Temperature Sensor",
+tag:"Intermediate",
+description:"Read temperature using an LM35 sensor.",
+code:`int sensor = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(sensor);
+  float voltage = value * (5.0 / 1023.0);
+  float temperature = voltage * 100;
+
+  Serial.println(temperature);
+  delay(1000);
+}`
+},
+
+{
+name:"Automatic Night Light",
+tag:"Beginner",
+description:"Turn on an LED when it gets dark.",
+code:`int ldr = A0;
+int led = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  int light = analogRead(ldr);
+
+  digitalWrite(led,
+    light < 400 ? HIGH : LOW);
+}`
+},
+
+{
+name:"RGB LED",
+tag:"Beginner",
+description:"Change the colours of an RGB LED.",
+code:`int red = 9;
+int green = 10;
+int blue = 11;
+
+void setup() {
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+}
+
+void loop() {
+  analogWrite(red, 255);
+  analogWrite(green, 0);
+  analogWrite(blue, 0);
+  delay(1000);
+
+  analogWrite(red, 0);
+  analogWrite(green, 255);
+  analogWrite(blue, 0);
+  delay(1000);
+
+  analogWrite(red, 0);
+  analogWrite(green, 0);
+  analogWrite(blue, 255);
+  delay(1000);
+}`
+},
+
+{
+name:"Potentiometer",
+tag:"Beginner",
+description:"Control LED brightness with a potentiometer.",
+code:`int pot = A0;
+int led = 9;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  int value = analogRead(pot);
+  int brightness = map(value, 0, 1023, 0, 255);
+  analogWrite(led, brightness);
+}`
+},
+
+{
+name:"LCD Display",
+tag:"Intermediate",
+description:"Display messages on a 16x2 LCD with I2C.",
+code:`#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Burger Network");
+  lcd.setCursor(0, 1);
+  lcd.print("Arduino Lab");
+}
+
+void loop() {
+}`
+},
+
+{
+name:"PIR Motion Sensor",
+tag:"Intermediate",
+description:"Detect movement using a PIR sensor.",
+code:`int pir = 2;
+int led = 13;
+
+void setup() {
+  pinMode(pir, INPUT);
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int motion = digitalRead(pir);
+  digitalWrite(led, motion);
+
+  if (motion == HIGH) {
+    Serial.println("Motion detected!");
+  }
+
+  delay(100);
+}`
+},
+
+{
+name:"Motion Detector",
+tag:"Intermediate",
+description:"Detect movement using a PIR sensor.",
+code:`int pir = 2;
+int led = 13;
+
+void setup() {
+  pinMode(pir, INPUT);
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led, digitalRead(pir));
+}`
+},
+
+{
+name:"Mini Piano",
+tag:"Intermediate",
+description:"Play notes using a push button.",
+code:`int buzzer = 8;
+int button = 2;
+
+void setup() {
+  pinMode(button, INPUT_PULLUP);
+}
+
+void loop() {
+  if (digitalRead(button) == LOW) {
+    tone(buzzer, 523);
+  } else {
+    noTone(buzzer);
+  }
+}`
+},
+
+{
+name:"Digital Dice",
+tag:"Beginner",
+description:"Generate a random number from 1 to 6.",
+code:`void setup() {
+  Serial.begin(9600);
+  randomSeed(analogRead(A0));
+}
+
+void loop() {
+  if (Serial.available()) {
+    Serial.read();
+    Serial.println(random(1, 7));
+  }
+}`
+},
+
+{
+name:"LED Chaser",
+tag:"Beginner",
+description:"Create a moving LED light effect.",
+code:`int leds[] = {2,3,4,5,6};
+
+void setup() {
+  for(int i=0;i<5;i++)
+    pinMode(leds[i], OUTPUT);
+}
+
+void loop() {
+  for(int i=0;i<5;i++) {
+    digitalWrite(leds[i], HIGH);
+    delay(150);
+    digitalWrite(leds[i], LOW);
+  }
+}`
+},
+
+{
+name:"Water Level Monitor",
+tag:"Intermediate",
+description:"Read water levels with an analog sensor.",
+code:`int sensor = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int level = analogRead(sensor);
+  Serial.print("Water level: ");
+  Serial.println(level);
+  delay(1000);
+}`
+},
+
+{
+name:"Reaction Timer",
+tag:"Intermediate",
+description:"Measure reaction time using an LED and button.",
+code:`int led = 13;
+int button = 2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(led, OUTPUT);
+  pinMode(button, INPUT_PULLUP);
+  randomSeed(analogRead(A0));
+}
+
+void loop() {
+  digitalWrite(led, LOW);
+  delay(random(2000, 5000));
+
+  digitalWrite(led, HIGH);
+  unsigned long start = millis();
+
+  while(digitalRead(button) == HIGH) {}
+
+  Serial.println(millis() - start);
+  digitalWrite(led, LOW);
+  delay(2000);
+}`
+},
+
+{
+name:"RGB Mood Light",
+tag:"Beginner",
+description:"Create a changing RGB lighting effect.",
+code:`int r=9, g=10, b=11;
+
+void setup() {
+  pinMode(r, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(b, OUTPUT);
+}
+
+void loop() {
+  for(int i=0;i<256;i++) {
+    analogWrite(r,i);
+    analogWrite(g,255-i);
+    analogWrite(b,100);
+    delay(15);
+  }
+}`
+},
+
+{
+name:"Parking Sensor",
+tag:"Intermediate",
+description:"Detect nearby objects with an ultrasonic sensor.",
+code:`int trig=9, echo=10, buzzer=8;
+
+void setup() {
+  pinMode(trig,OUTPUT);
+  pinMode(echo,INPUT);
+  pinMode(buzzer,OUTPUT);
+}
+
+void loop() {
+  digitalWrite(trig,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+
+  long t=pulseIn(echo,HIGH);
+  int d=t*0.034/2;
+
+  if(d>0 && d<20)
+    tone(buzzer,1000);
+  else
+    noTone(buzzer);
+
+  delay(100);
+}`
+},
+
+{
+name:"Sound Detector",
+tag:"Intermediate",
+description:"Detect sound using a microphone module.",
+code:`int mic = A0;
+int led = 13;
+
+void setup() {
+  pinMode(led,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sound = analogRead(mic);
+  digitalWrite(led, sound > 600);
+  Serial.println(sound);
+}`
+},
+
+{
+name:"Temperature Warning",
+tag:"Intermediate",
+description:"Activate a buzzer when temperature gets too high.",
+code:`int sensor=A0;
+int buzzer=8;
+
+void setup() {
+  pinMode(buzzer,OUTPUT);
+}
+
+void loop() {
+  float v=analogRead(sensor)*5.0/1023;
+  float temp=v*100;
+
+  if(temp>30)
+    tone(buzzer,1000);
+  else
+    noTone(buzzer);
+
+  delay(500);
+}`
+},
+
+{
+name:"Button Counter",
+tag:"Beginner",
+description:"Count button presses using the Serial Monitor.",
+code:`int button=2;
+int count=0;
+int previous=HIGH;
+
+void setup() {
+  pinMode(button,INPUT_PULLUP);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int current=digitalRead(button);
+
+  if(current==LOW && previous==HIGH) {
+    count++;
+    Serial.println(count);
+    delay(50);
+  }
+
+  previous=current;
+}`
+},
+
+{
+name:"Automatic Fan",
+tag:"Intermediate",
+description:"Control a small DC fan using a temperature sensor.",
+code:`int sensor=A0;
+int fan=9;
+
+void setup() {
+  pinMode(fan,OUTPUT);
+}
+
+void loop() {
+  float temp=analogRead(sensor)*5.0/1023*100;
+
+  if(temp>28)
+    analogWrite(fan,200);
+  else
+    analogWrite(fan,0);
+
+  delay(1000);
+}`
+},
+
+{
+name:"Light Meter",
+tag:"Beginner",
+description:"Measure brightness with an LDR.",
+code:`int ldr=A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int brightness=analogRead(ldr);
+  Serial.println(brightness);
+  delay(500);
+}`
+},
+
+{
+name:"Servo Door",
+tag:"Intermediate",
+description:"Create a small servo-powered model door.",
+code:`#include <Servo.h>
+
+Servo door;
+
+void setup() {
+  door.attach(9);
+}
+
+void loop() {
+  door.write(0);
+  delay(2000);
+
+  door.write(90);
+  delay(2000);
+}`
+},
+
+{
+name:"LED Fade",
+tag:"Beginner",
+description:"Make an LED smoothly increase and decrease brightness.",
+code:`int led=9;
+
+void setup() {
+  pinMode(led,OUTPUT);
+}
+
+void loop() {
+  for(int i=0;i<=255;i++) {
+    analogWrite(led,i);
+    delay(10);
+  }
+
+  for(int i=255;i>=0;i--) {
+    analogWrite(led,i);
+    delay(10);
+  }
+}`
+},
+
+{
+name:"Serial Calculator",
+tag:"Beginner",
+description:"Add two numbers using the Serial Monitor.",
+code:`void setup() {
+  Serial.begin(9600);
+  Serial.println("Enter two numbers:");
+}
+
+void loop() {
+  if(Serial.available() >= 2) {
+    int a=Serial.parseInt();
+    int b=Serial.parseInt();
+
+    Serial.print("Result: ");
+    Serial.println(a+b);
+  }
+}`
+},
+
+{
+name:"Infrared Remote LED",
+tag:"Intermediate",
+description:"Control an LED using an infrared remote.",
+code:`#include <IRremote.hpp>
+
+int receiver=2;
+int led=13;
+
+void setup() {
+  pinMode(led,OUTPUT);
+  IrReceiver.begin(receiver, ENABLE_LED_FEEDBACK);
+}
+
+void loop() {
+  if(IrReceiver.decode()) {
+    digitalWrite(led,!digitalRead(led));
+    IrReceiver.resume();
+  }
+}`
+},
+
+{
+name:"Mini Stopwatch",
+tag:"Beginner",
+description:"Create a stopwatch using millis().",
+code:`unsigned long startTime;
+
+void setup() {
+  Serial.begin(9600);
+  startTime=millis();
+}
+
+void loop() {
+  Serial.print("Seconds: ");
+  Serial.println((millis()-startTime)/1000);
+  delay(1000);
+}`
+},
+
+{
+name:"Relay Controller",
+tag:"Intermediate",
+description:"Control a low-voltage relay module.",
+code:`int relay=7;
+
+void setup() {
+  pinMode(relay,OUTPUT);
+}
+
+void loop() {
+  digitalWrite(relay,HIGH);
+  delay(2000);
+
+  digitalWrite(relay,LOW);
+  delay(2000);
+}`
+},
+
+{
+name:"Mini Memory Game",
+tag:"Intermediate",
+description:"Create a simple LED sequence memory game.",
+code:`int leds[]={3,4,5};
+int sequence[]={0,2,1,0};
+
+void setup() {
+  for(int i=0;i<3;i++)
+    pinMode(leds[i],OUTPUT);
+}
+
+void loop() {
+  for(int i=0;i<4;i++) {
+    digitalWrite(leds[sequence[i]],HIGH);
+    delay(500);
+    digitalWrite(leds[sequence[i]],LOW);
+    delay(300);
+  }
+
+  delay(2000);
+}` 
+}
+
+];
+
+let currentProject = null;
+let currentFilter = "All";
+
+function renderProjects() {
+  const query = document.getElementById("search")
+    .value.toLowerCase();
+
+  const filtered = projects.filter(project => {
+    const matchesSearch =
+      (project.name + project.description + project.tag)
+      .toLowerCase().includes(query);
+
+    const matchesFilter =
+      currentFilter === "All" ||
+      project.tag === currentFilter;
+
+    return matchesSearch && matchesFilter;
+  });
+
+  const grid = document.getElementById("projectGrid");
+
+  grid.innerHTML = "";
+
+  filtered.forEach((project) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const title = document.createElement("h3");
+    title.textContent = project.name;
+
+    const description = document.createElement("p");
+    description.textContent = project.description;
+
+    const tag = document.createElement("div");
+    tag.className = "tag";
+    tag.textContent = project.tag.toUpperCase();
+
+    const button = document.createElement("button");
+    button.textContent = "View Arduino Code";
+    button.onclick = () => openProject(project);
+
+    card.append(title, description, tag, button);
+    grid.appendChild(card);
+  });
+
+  document.getElementById("noResults").style.display =
+    filtered.length ? "none" : "block";
+}
+
+function setFilter(filter, button) {
+  cur
