@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burger Network | Technology</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #101318;
+    color: #e9edf5;
+}
+
+header {
+    padding: 22px 8%;
+    background: #181e27;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #303947;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #42a5ff;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav a:hover {
+    color: #42a5ff;
+}
+
+.hero {
+    padding: 100px 8%;
+    background: linear-gradient(120deg, #101318, #172b43);
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #42a5ff;
+}
+
+.hero p {
+    color: #b6c1d1;
+    font-size: 18px;
+    max-width: 550px;
+    line-height: 1.6;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 13px 23px;
+    background: #2388df;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+section {
+    padding: 65px 8%;
+}
+
+.section-title {
+    font-size: 29px;
+    margin-bottom: 30px;
+    color: #42a5ff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #1b222d;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #303b4a;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #aeb9c9;
+    line-height: 1.6;
+}
+
+.code {
+    background: #080c12;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #70d6a0;
+    margin-top: 15px;
+    text-align: left;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #181e27;
+    color: #8c99aa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">BURGER NETWORK</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#technology">Technology</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h1>BUILD. CODE. <span>CREATE.</span></h1>
+    <p>
+        Welcome to Burger Network.
+        Exploring electronics, programming,
+        Arduino projects and creative technology.
+    </p>
+    <a href="#projects" class="button">Explore Projects</a>
+</div>
+
+<section id="projects">
+    <h2 class="section-title">Our Projects</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Arduino LED System</h3>
+            <p>A simple Arduino project controlling LEDs.</p>
+        </div>
+
+        <div class="card">
+            <h3>Mini Electric Car</h3>
+            <p>Small electronics project using motors, batteries and lights.</p>
+        </div>
+
+        <div class="card">
+            <h3>Smart Technology</h3>
+            <p>Experimenting with sensors and electronic components.</p>
+        </div>
+    </div>
+</section>
+
+<section id="technology">
+    <h2 class="section-title">Arduino Code Lab</h2>
+    <p>Example Arduino code from Burger Network.</p>
+
+    <div class="code">
+<pre>
+int led = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led, HIGH);
+  delay(1000);
+
+  digitalWrite(led, LOW);
+  delay(1000);
+}
+</pre>
+    </div>
+</section>
+
+<section id="about">
+    <h2 class="section-title">About Burger Network</h2>
+    <p>
+        Burger Network is a small independent
+        technology project focused on electronics,
+        Arduino programming, DIY projects
+        and experimenting with new ideas.
+    </p>
+</section>
+
+<footer>
+    © 2026 Burger Network | Technology & Electronics
+</footer>
+
+</body>
+</html>
